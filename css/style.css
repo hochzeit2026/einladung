@@ -1,0 +1,74 @@
+body {
+  background-image: url("../img/img1.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.invitation-card {
+  margin-top: 40px;
+  padding: 40px 30px;
+  background-color: rgba(0, 0, 0, 0.72);
+  color: #f8f4ef;
+  border-radius: 12px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+  font-size: 0.82rem;
+  margin-bottom: 18px;
+  color: #d8c9a7;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-size: 1.35rem;
+  margin-bottom: 24px;
+  color: #f7e7cc;
+}
+
+.divider {
+  width: 120px;
+  height: 2px;
+  background: #d8c9a7;
+  margin: 0 auto 24px;
+}
+
+.details {
+  margin-bottom: 28px;
+}
+
+.details p,
+.message,
+.signature {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.message {
+  margin-top: 14px;
+}
+
+.signature {
+  margin-top: 26px;
+  font-style: italic;
+  color: #f3dcb1;
+}
+
+@media (max-width: 768px) {
+  .invitation-card {
+    padding: 28px 20px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+}
