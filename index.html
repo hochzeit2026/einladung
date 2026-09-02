@@ -163,6 +163,16 @@
       const guestNameInput = document.querySelector("#guest-name");
       const guestList = document.querySelector("#guest-list");
       let savedGuests = [];
+      let guestRequestInProgress = false;
+
+      const setGuestControlsDisabled = (disabled) => {
+        guestRequestInProgress = disabled;
+        guestNameInput.disabled = disabled;
+        guestForm.querySelector("button[type='submit']").disabled = disabled;
+        guestList.querySelectorAll(".guest-remove").forEach((button) => {
+          button.disabled = disabled;
+        });
+      };
 
       const renderGuests = () => {
         guestList.replaceChildren();
@@ -175,20 +185,26 @@
           guestCard.className = "guest-card";
           removeButton.type = "button";
           removeButton.className = "guest-remove";
+          removeButton.disabled = guestRequestInProgress;
           removeButton.setAttribute("aria-label", `${guestName} löschen`);
           removeButton.textContent = "×";
           name.textContent = guestName;
 
           removeButton.addEventListener("click", async () => {
-            removeButton.disabled = true;
+            if (guestRequestInProgress) {
+              return;
+            }
+
+            setGuestControlsDisabled(true);
 
             try {
               await sendGuestRequest({ action: "delete", name: guestName });
               savedGuests.splice(guestIndex, 1);
               renderGuests();
             } catch (error) {
-              removeButton.disabled = false;
               alert("Der Name konnte nicht gelöscht werden. Bitte versuche es erneut.");
+            } finally {
+              setGuestControlsDisabled(false);
             }
           });
 
@@ -226,12 +242,13 @@
         event.preventDefault();
         const guestName = guestNameInput.value.trim();
 
-        if (!guestName) {
+        if (!guestName || guestRequestInProgress) {
           return;
         }
 
         const submitButton = guestForm.querySelector("button[type='submit']");
-        submitButton.disabled = true;
+        setGuestControlsDisabled(true);
+        submitButton.textContent = "Wird gesendet...";
 
         try {
           await sendGuestRequest({ action: "add", name: guestName });
@@ -242,7 +259,8 @@
         } catch (error) {
           alert("Der Name konnte nicht gespeichert werden. Bitte versuche es erneut.");
         } finally {
-          submitButton.disabled = false;
+          submitButton.textContent = "Senden";
+          setGuestControlsDisabled(false);
         }
       });
 
