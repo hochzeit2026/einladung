@@ -215,15 +215,21 @@
               return;
             }
 
+            const password = window.prompt("Passwort zum Löschen eingeben:");
+
+            if (!password) {
+              return;
+            }
+
             setGuestControlsDisabled(true);
             setGuestLoading(true, "Name wird gelöscht...");
 
             try {
-              await sendGuestRequest({ action: "delete", name: guestName });
+              await sendGuestRequest({ action: "delete", name: guestName, password });
               savedGuests.splice(guestIndex, 1);
               renderGuests();
             } catch (error) {
-              alert("Der Name konnte nicht gelöscht werden. Bitte versuche es erneut.");
+              alert(error.message || "Der Name konnte nicht gelöscht werden. Bitte versuche es erneut.");
             } finally {
               setGuestLoading(false, "");
               setGuestControlsDisabled(false);
@@ -247,7 +253,13 @@
           throw new Error("Die Gästeliste konnte nicht erreicht werden.");
         }
 
-        return response.json();
+        const result = await response.json();
+
+        if (result && result.success === false) {
+          throw new Error(result.error || "Die Anfrage wurde abgelehnt.");
+        }
+
+        return result;
       };
 
       const loadGuests = async () => {
@@ -274,19 +286,25 @@
           return;
         }
 
+        const password = window.prompt("Passwort zum Speichern eingeben:");
+
+        if (!password) {
+          return;
+        }
+
         const submitButton = guestForm.querySelector("button[type='submit']");
         setGuestControlsDisabled(true);
         setGuestLoading(true, "Name wird gespeichert...");
         submitButton.textContent = "Wird gesendet...";
 
         try {
-          await sendGuestRequest({ action: "add", name: guestName });
+          await sendGuestRequest({ action: "add", name: guestName, password });
           savedGuests.push(guestName);
           guestForm.reset();
           guestNameInput.focus();
           renderGuests();
         } catch (error) {
-          alert("Der Name konnte nicht gespeichert werden. Bitte versuche es erneut.");
+          alert(error.message || "Der Name konnte nicht gespeichert werden. Bitte versuche es erneut.");
         } finally {
           setGuestLoading(false, "");
           submitButton.textContent = "Senden";
