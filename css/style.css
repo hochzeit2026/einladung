@@ -202,6 +202,39 @@ h2 {
   background: #f3dcb1;
 }
 
+.guest-loading {
+  max-width: 520px;
+  margin: -8px auto 20px;
+  color: #d8c9a7;
+  font-size: 0.95rem;
+}
+
+.guest-progress {
+  height: 4px;
+  margin-top: 8px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: rgba(248, 244, 239, 0.25);
+}
+
+.guest-progress-bar {
+  width: 40%;
+  height: 100%;
+  border-radius: inherit;
+  background: #d8c9a7;
+  animation: guest-progress 1.2s ease-in-out infinite;
+}
+
+@keyframes guest-progress {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(275%);
+  }
+}
+
 .guest-list {
   display: flex;
   flex-wrap: wrap;
@@ -258,7 +291,8 @@ h2 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .petal {
+  .petal,
+  .guest-progress-bar {
     animation-play-state: paused;
   }
 }
