@@ -30,6 +30,8 @@
   </head>
 
   <body id="anfang">
+    <div class="petal-layer" aria-hidden="true"></div>
+
     <div class="container py-3">
       <div class="row justify-content-center">
         <div class="col-md-8">
@@ -114,6 +116,25 @@
       </a>
     </div>
 
+    <script>
+      const petalLayer = document.querySelector(".petal-layer");
+      const petalCount = 26;
+
+      for (let petalIndex = 0; petalIndex < petalCount; petalIndex += 1) {
+        const petal = document.createElement("span");
+        const fallDuration = 14 + Math.random() * 12;
+        const fallDelay = Math.random() * -26;
+
+        petal.className = "petal";
+        petal.style.setProperty("--petal-left", `${Math.random() * 100}%`);
+        petal.style.setProperty("--petal-size", `${8 + Math.random() * 8}px`);
+        petal.style.setProperty("--petal-duration", `${fallDuration}s`);
+        petal.style.setProperty("--petal-delay", `${fallDelay}s`);
+        petal.style.setProperty("--petal-drift", `${-80 + Math.random() * 160}px`);
+        petal.style.setProperty("--petal-rotation", `${Math.random() * 360}deg`);
+        petalLayer.appendChild(petal);
+      }
+    </script>
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
