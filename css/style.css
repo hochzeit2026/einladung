@@ -16,6 +16,67 @@ body {
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
 }
 
+.scroll-cue {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0 8px;
+}
+
+.scroll-cue a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: rgba(0, 0, 0, 0.801);
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-cue-arrow {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-right: 2px solid #d8c9a7;
+  border-bottom: 2px solid #d8c9a7;
+  transform: rotate(45deg) translate(-3px, -3px);
+  animation: scroll-cue-bounce 1.8s ease-in-out infinite;
+}
+
+.scroll-cue-arrow-up {
+  transform: rotate(225deg) translate(-3px, -3px);
+}
+
+@keyframes scroll-cue-bounce-up {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: rotate(225deg) translate(-3px, -3px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: rotate(225deg) translate(1px, 1px);
+  }
+}
+
+.scroll-cue-arrow-up {
+  animation-name: scroll-cue-bounce-up;
+}
+
+@keyframes scroll-cue-bounce {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: rotate(45deg) translate(-3px, -3px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: rotate(45deg) translate(1px, 1px);
+  }
+}
+
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.25rem;
@@ -55,6 +116,15 @@ h2 {
 
 .message {
   margin-top: 14px;
+}
+
+.map-link {
+  color: #8fd3ff;
+}
+
+.map-link:hover,
+.map-link:focus {
+  color: #c4ebff;
 }
 
 .signature {
