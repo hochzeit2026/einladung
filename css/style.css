@@ -169,6 +169,74 @@ h2 {
   color: #c4ebff;
 }
 
+.guest-form {
+  display: flex;
+  gap: 10px;
+  max-width: 520px;
+  margin: 0 auto 24px;
+}
+
+.guest-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 14px;
+  border: 1px solid #d8c9a7;
+  border-radius: 6px;
+  background: rgba(248, 244, 239, 0.95);
+  color: #211b18;
+  font: inherit;
+}
+
+.guest-form button {
+  padding: 10px 18px;
+  border: 1px solid #d8c9a7;
+  border-radius: 6px;
+  background: #d8c9a7;
+  color: #211b18;
+  font: inherit;
+  cursor: pointer;
+}
+
+.guest-form button:hover,
+.guest-form button:focus {
+  background: #f3dcb1;
+}
+
+.guest-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.guest-card {
+  position: relative;
+  min-width: 120px;
+  padding: 14px 14px 10px 28px;
+  border-radius: 8px;
+  background: rgba(248, 244, 239, 0.95);
+  color: #211b18;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
+}
+
+.guest-remove {
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #7d4646;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.guest-remove:hover,
+.guest-remove:focus {
+  color: #b21f1f;
+}
+
 .signature {
   margin-top: 26px;
   font-style: italic;
@@ -182,6 +250,10 @@ h2 {
 
   h1 {
     font-size: 2.2rem;
+  }
+
+  .guest-form {
+    flex-direction: column;
   }
 }
 
