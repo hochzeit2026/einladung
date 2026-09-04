@@ -165,6 +165,10 @@ h2 {
   font-size: 0.9rem;
 }
 
+.notice-text {
+  text-align: justify;
+}
+
 .map-link {
   color: #8fd3ff;
 }
