@@ -160,6 +160,11 @@ h2 {
   margin-top: 14px;
 }
 
+.invitation-info {
+  margin-top: 28px;
+  font-size: 0.9rem;
+}
+
 .map-link {
   color: #8fd3ff;
 }
